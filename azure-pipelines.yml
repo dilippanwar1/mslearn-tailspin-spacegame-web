@@ -1,11 +1,13 @@
+trigger:
+- master
+
+pr:
+- master
+
 pool:
   vmImage: 'Ubuntu-16.04'
   demands:
     - npm
-
-pr:
-- master
-- releases/*
 
 variables:
 - group: SpaceGameVars
@@ -48,7 +50,7 @@ steps:
 
 - template: templates/build.yml
   parameters:
-    buildConfiguration: $(FWD-DB-UNAME)
+    buildConfiguration: $(buildConfiguration)
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
